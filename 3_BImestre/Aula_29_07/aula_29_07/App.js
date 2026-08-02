@@ -6,7 +6,7 @@ import {
   Image,
   TextInput,
   Button,
-  View
+  View,
 } from 'react-native';
 
 export default function App() {
