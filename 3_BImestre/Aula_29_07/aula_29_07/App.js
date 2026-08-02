@@ -7,6 +7,7 @@ import {
   TextInput,
   Button,
   View,
+  useState
 } from 'react-native';
 
 export default function App() {
