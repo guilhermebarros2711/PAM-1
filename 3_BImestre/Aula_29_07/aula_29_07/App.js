@@ -1,84 +1,133 @@
 import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
 import {
   StyleSheet,
-  Text,
   ScrollView,
   Image,
+  Text,
   TextInput,
   Button,
   View,
-  useState
 } from 'react-native';
 
 export default function App() {
+  const [dark, setDark] = useState(false);
+
+  const tema = {
+    fundo: dark ? "#121212" : "#EEF2FF",
+    card: dark ? "#1E1E1E" : "#FFFFFF",
+    texto: dark ? "#FFFFFF" : "#222222",
+    subtitulo: dark ? "#B0B0B0" : "#666666",
+    input: dark ? "#2C2C2C" : "#F5F5F5",
+    borda: dark ? "#444444" : "#DDDDDD",
+  };
+
   return (
-    <ScrollView style={styles.fundo}>
-
-      <View style={styles.card}>
-
+    <ScrollView
+      style={[styles.container, { backgroundColor: tema.fundo }]}
+      contentContainerStyle={{ paddingVertical: 40 }}
+    >
+      <View
+        style={[styles.card, { backgroundColor: tema.card }]}
+      >
         <Image
           source={{ uri: "https://picsum.photos/200" }}
-          style={styles.foto}
+          style={styles.imagem}
         />
 
-        <Text style={styles.titulo}>Meu Perfil</Text>
+        <Text
+          style={[styles.titulo, { color: tema.texto }]}
+        >
+          Meu Perfil
+        </Text>
 
-        <Text style={styles.descricao}>
-          Faça seu cadastro para continuar.
+        <Text
+          style={[styles.subtitulo, { color: tema.subtitulo }]}
+        >
+          Personalize sua conta
         </Text>
 
         <TextInput
-          style={styles.input}
           placeholder="Nome"
+          placeholderTextColor={dark ? "#888" : "#999"}
+          style={[
+            styles.input,
+            {
+              backgroundColor: tema.input,
+              borderColor: tema.borda,
+              color: tema.texto,
+            },
+          ]}
         />
 
         <TextInput
-          style={styles.input}
           placeholder="E-mail"
+          placeholderTextColor={dark ? "#888" : "#999"}
+          style={[
+            styles.input,
+            {
+              backgroundColor: tema.input,
+              borderColor: tema.borda,
+              color: tema.texto,
+            },
+          ]}
         />
 
         <TextInput
-          style={styles.input}
           placeholder="Senha"
+          placeholderTextColor={dark ? "#888" : "#999"}
           secureTextEntry
+          style={[
+            styles.input,
+            {
+              backgroundColor: tema.input,
+              borderColor: tema.borda,
+              color: tema.texto,
+            },
+          ]}
         />
 
         <View style={styles.botao}>
           <Button
-            title="Entrar"
+            title={dark ? "☀️ Tema Claro" : "🌙 Tema Escuro"}
             color="#6C63FF"
-            onPress={() => alert("Bem-vindo!")}
+            onPress={() => setDark(!dark)}
           />
         </View>
 
+        <View style={{ height: 15 }} />
+
+        <View style={styles.botao}>
+          <Button
+            title="Salvar Perfil"
+            color="#22C55E"
+            onPress={() => alert("Perfil salvo com sucesso!")}
+          />
+        </View>
       </View>
 
-      <StatusBar style="light" />
-
+      <StatusBar style={dark ? "light" : "dark"} />
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  fundo: {
+  container: {
     flex: 1,
-    backgroundColor: "#EEF2FF",
   },
 
   card: {
-    backgroundColor: "#FFF",
-    margin: 25,
-    marginTop: 50,
-    padding: 25,
+    marginHorizontal: 25,
     borderRadius: 20,
+    padding: 25,
     elevation: 8,
     alignItems: "center",
   },
 
-  foto: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
+  imagem: {
+    width: 130,
+    height: 130,
+    borderRadius: 65,
     marginBottom: 20,
     borderWidth: 3,
     borderColor: "#6C63FF",
@@ -87,28 +136,24 @@ const styles = StyleSheet.create({
   titulo: {
     fontSize: 28,
     fontWeight: "bold",
-    color: "#333",
   },
 
-  descricao: {
-    color: "#777",
-    marginTop: 8,
+  subtitulo: {
+    fontSize: 16,
+    marginTop: 5,
     marginBottom: 25,
-    textAlign: "center",
   },
 
   input: {
     width: "100%",
-    backgroundColor: "#F5F5F5",
+    borderWidth: 1,
     borderRadius: 12,
     padding: 14,
     marginBottom: 15,
-    borderWidth: 1,
-    borderColor: "#DDD",
+    fontSize: 16,
   },
 
   botao: {
     width: "100%",
-    marginTop: 10,
   },
 });
