@@ -89,7 +89,7 @@ export default function App() {
 
         <View style={styles.botao}>
           <Button
-            title={dark ? "☀️ Tema Claro" : "🌙 Tema Escuro"}
+            title={dark ? "Tema Claro" : "Tema Escuro"}
             color="#6C63FF"
             onPress={() => setDark(!dark)}
           />
