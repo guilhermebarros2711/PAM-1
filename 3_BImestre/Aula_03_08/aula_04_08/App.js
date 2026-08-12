@@ -1,5 +1,5 @@
-import StackNavigator from './navigation/StackNavigator';
+import Login from './screens/Login/login';
 
-export default function App(){
-  return <StackNavigator />;
+export default function App() {
+  return <Login />;
 }
